@@ -1,17 +1,25 @@
 package main
 
 import (
-    "math"
+    "math/big"
 )
 
 func isPrime(p int) bool {
-    var (
-        s int = 4
-        m int = int(math.Pow(2, float64(p)) - 1)
-    )
+    zero := big.NewInt(0)
+    one := big.NewInt(1)
+    two := big.NewInt(2)
+
+    p2 := big.NewInt(int64(p))
+    s2 := big.NewInt(4)
+    m2 := big.NewInt(2)
+
+    m2.Exp(m2, p2, nil)
+    m2.Sub(m2, one)
 
     for i := 0; i < p - 2; i++ {
-        s = ((s * s) - 2) % m
+        s2.Mul(s2, s2)
+        s2.Sub(s2, two)
+        s2.Mod(s2, m2)
     }
-    return s == 0 
+    return 0 == zero.Cmp(s2)
 }

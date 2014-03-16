@@ -13,6 +13,11 @@ func isPrime(p int) bool {
     s2 := big.NewInt(4)
     m2 := big.NewInt(2)
 
+   if 0 == two.Cmp(p2) {
+       // special case for 2
+       return true
+   }
+
     m2.Exp(m2, p2, nil)
     m2.Sub(m2, one)
 

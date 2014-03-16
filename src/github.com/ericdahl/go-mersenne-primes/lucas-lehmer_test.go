@@ -2,16 +2,24 @@ package main
 
 import (
     "testing"
-    "github.com/stretchr/testify/assert"
 )
 
+var mersennes = []int {
+    3,
+    5,
+    7,
+    13,
+    17,
+    19,
+    31,
+    61,
+}
+
 func TestPrime(t *testing.T) {
-    assert.True(t, isPrime(3))
-    assert.True(t, isPrime(5))
-    assert.True(t, isPrime(7))
-    assert.True(t, isPrime(13))
-    assert.True(t, isPrime(17))
-    assert.True(t, isPrime(19))
-    assert.True(t, isPrime(31))
-    assert.True(t, isPrime(61))
+    for _, p := range mersennes {
+        if !isPrime(p) {
+            t.Errorf("p=[%d] should be calculated as prime", p)
+
+        }
+    }
 }

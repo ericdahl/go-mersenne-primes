@@ -2,6 +2,7 @@ package main
 
 import (
     "testing"
+    "log"
 )
 
 var mersennes = []int {
@@ -16,11 +17,19 @@ var mersennes = []int {
     61,
 }
 
-func TestPrime(t *testing.T) {
-    for _, p := range mersennes {
-        if !isPrime(p) {
-            t.Errorf("p=[%d] should be calculated as prime", p)
-
+func TestPrimality(t *testing.T) {
+    p := 0
+    for i:= 2; i <= mersennes[len(mersennes) - 1]; i++ {
+        log.Printf("isPrime(%d) -> [%t]\n", i, isPrime(i))
+        if (mersennes[p] == i) {
+            if !isPrime(i) {
+                t.Errorf("[%d] should be calculated as prime", i)
+            }
+            p++
+        } else {
+            if isPrime(i) {
+                t.Errorf("[%d] should be calculated as composite", i)
+            }
         }
     }
 }

@@ -33,3 +33,19 @@ func TestPrimality(t *testing.T) {
         }
     }
 }
+
+func TestLarge(t *testing.T) {
+    if !isPrime(607) {
+        t.Errorf("[%d] should be calculated as prime", 607)
+    }
+}
+
+func benchmarkLarge(n int, b *testing.B) {
+    for i := 0; i < b.N; i++ {
+        isPrime(n)
+    }
+}
+
+func Benchmark107(b *testing.B) { benchmarkLarge(107, b); }
+func Benchmark1279(b *testing.B) { benchmarkLarge(1279, b); }
+func Benchmark11213(b *testing.B) { benchmarkLarge(11213, b); }
